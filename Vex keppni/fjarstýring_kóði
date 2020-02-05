@@ -1,0 +1,29 @@
+int armSpeedPCT = 50;
+  int clawSpeedPCT = 50;
+  while (1) {
+    if(Controller1.ButtonUp.pressing()) {
+            ArmMotor.spin(directionType::fwd, armSpeedPCT, velocityUnits::pct);
+        }
+        else if(Controller1.ButtonDown.pressing()) {
+            ArmMotor.spin(directionType::rev, armSpeedPCT, velocityUnits::pct);
+        }
+        else {
+            ArmMotor.stop(brakeType::brake);
+        }
+
+        if(Controller1.ButtonA.pressing()) {
+            ClawMotor.spin(directionType::fwd, clawSpeedPCT, velocityUnits::pct);
+        }
+        else if(Controller1.ButtonY.pressing()) {
+            ClawMotor.spin(directionType::rev, clawSpeedPCT, velocityUnits::pct);
+        }
+        else {
+            ClawMotor.stop(brakeType::brake);        
+        }
+        LeftMotor.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
+        RightMotor.spin(directionType::fwd,  Controller1.Axis3.value(), velocityUnits::pct);
+
+
+    wait(20, msec); // Sleep the task for a short amount of time to
+                    // prevent wasted resources.
+  }
